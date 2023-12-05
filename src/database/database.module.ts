@@ -12,8 +12,8 @@ import { ConfigService } from '@nestjs/config'
         database: configService.getOrThrow('POSTGRES_DATABASE'), // 'realworld'
         username: configService.getOrThrow('POSTGRES_USERNAME'), // realworld
         password: configService.getOrThrow('POSTGRES_PASSWORD'), // password
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: false,
+        autoLoadEntities: true,
+        synchronize: configService.getOrThrow('POSTGRES_SYNCHRONIZE'),
       }),
       inject: [ConfigService],
     }),
