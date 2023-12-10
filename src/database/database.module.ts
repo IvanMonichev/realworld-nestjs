@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigService } from '@nestjs/config'
+import { TagEntity } from '@app/tag/tag.entity'
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { ConfigService } from '@nestjs/config'
         database: configService.getOrThrow('POSTGRES_DATABASE'), // 'realworld'
         username: configService.getOrThrow('POSTGRES_USERNAME'), // realworld
         password: configService.getOrThrow('POSTGRES_PASSWORD'), // password
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        entities: [TagEntity],
         synchronize: configService.getOrThrow('POSTGRES_SYNCHRONIZE'),
         migrationsTableName: 'typeorm_migrations',
         migrationsRun: false,
